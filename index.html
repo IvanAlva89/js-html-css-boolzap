@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Boolzap</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Vue Js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <aside class="side">
+        <!-- User -->
+        <div class="user">
+          <div class="user-info" v-model="user-info">
+            <img :src="`./img/avatar${user.avatar}.jpg`" alt="avatar">
+            <span>{{ user.name }}</span>
+          </div>
+          <!-- Menu -->
+          <div class="fas-icons">
+            <i class="fas fa-circle-notch"></i>
+            <i class="fas fa-comment-alt"></i>
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+
+        <!-- Notification -->
+        <div class="notification">
+          <div class="icon">
+            <i class="fas fa-bell-slash"></i>
+          </div>
+          <div class="notification-desktop">
+            <p>Ricevi notifiche di nuovi messaggi</p>
+            <a href="#"><strong>Attiva notifiche desktop</strong></a>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search">
+          <div class="search-content">
+            <i class="fas fa-search"></i>
+            <input type="text"
+              placeholder="Cerca o inizia una nuova chat"
+            >
+          </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="chatlist">
+          <ul class="contacts">
+            <li class="contact" v-for="(contact, index) in contacts">
+              <img class="img" :src="`./img/avatar${contact.avatar}.jpg`" alt="avatar">
+              <span class="contact-name">{{ contact.name }}</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content">
+        <!-- Header chat -->
+        <section class="cont-header">
+          <div class="cont-user">
+            <img src="./img/avatar_1.jpg" alt="avatar user">
+            <div>
+              <h3 class="name-user">Michele</h3>
+              <p class="access">Ultimo accesso oggi alle 10.35</p>
+            </div>
+          </div>
+          <div class="fas-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-paperclip"></i>
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </section>
+
+        <!-- Main chat -->
+        <section class="cont-main">
+
+        </section>
+
+        <!-- Footer chat -->
+        <section class="cont-footer">
+          <a href="#">
+            <i class="far fa-smile"></i>
+          </a>
+          <input type="text" placeholder="Scrivi un messaggio">
+          <a href="#">
+            <i class="fas fa-microphone"></i>
+          </a>
+        </section>
+      </main>
+    </div>
+    <!-- Js -->
+    <script src="./js/main.js"></script>
+  </body>
+</html>

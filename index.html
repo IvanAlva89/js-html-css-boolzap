@@ -17,7 +17,7 @@
       <aside class="side">
         <!-- User -->
         <div class="user">
-          <div class="user-info" v-model="user-info">
+          <div class="user-info">
             <img :src="`./img/avatar${user.avatar}.jpg`" alt="avatar">
             <span>{{ user.name }}</span>
           </div>
@@ -53,8 +53,12 @@
         <!-- Chat -->
         <div class="chatlist">
           <ul class="contacts">
-            <li class="contact" v-for="(contact, index) in contacts">
-              <img class="img" :src="`./img/avatar${contact.avatar}.jpg`" alt="avatar">
+            <li v-for="(contact, index) in contacts"
+              class="contact"
+              :class="indexChat == index ? 'active' : ''"
+              @click="activeChat(index)"
+            >
+              <img class="img" :src="`./img/avatar${contact.avatar}.jpg`" alt="contact.avatar">
               <span class="contact-name">{{ contact.name }}</span>
             </li>
           </ul>
@@ -66,9 +70,9 @@
         <!-- Header chat -->
         <section class="cont-header">
           <div class="cont-user">
-            <img src="./img/avatar_1.jpg" alt="avatar user">
+            <img :src="`./img/avatar${contacts[indexChat].avatar}.jpg`" alt="avatar user">
             <div>
-              <h3 class="name-user">Michele</h3>
+              <h3 class="name-user">{{ contacts[indexChat].name }}</h3>
               <p class="access">Ultimo accesso oggi alle 10.35</p>
             </div>
           </div>
@@ -81,7 +85,16 @@
 
         <!-- Main chat -->
         <section class="cont-main">
-
+          <div v-for="(message, index) in contacts[indexChat].messages"
+          :class="message.status === 'sent' ? 'msg-sent' : 'msg-received'"
+          >
+            <div class="message-chat"
+            :class="message.status == 'sent' ? 'sent' : 'received'"
+            >
+              <p>{{ message.message }}</p>
+              <span>{{ message.date }}</span>
+            </div>
+          </div>
         </section>
 
         <!-- Footer chat -->

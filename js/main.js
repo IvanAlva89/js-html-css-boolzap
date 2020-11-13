@@ -94,7 +94,12 @@ var app = new Vue({
                     }
                 ],
             },
-        ]
+        ],
+        indexChat: 0,
     },
-    methods: {}
+    methods: {
+      activeChat(index) {
+        this.indexChat = index;
+      }
+    }
 });

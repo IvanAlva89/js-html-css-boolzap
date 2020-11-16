@@ -9,6 +9,8 @@ var app = new Vue({
             name: 'Nome Utente',
             avatar: '_io'
         },
+          indexChat: 0,
+          currentFooterMessage: '',
         // Elenco contatti
         contacts: [
             {
@@ -95,11 +97,30 @@ var app = new Vue({
                 ],
             },
         ],
-        indexChat: 0,
     },
     methods: {
       activeChat(index) {
         this.indexChat = index;
-      }
+      },
+      sendFooterMessage() {
+        if(this.currentFooterMessage.trim() !== '') {
+          this.contacts[this.indexChat].messages.push({
+            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+            message: this.currentFooterMessage,
+            status: 'sent'
+          }),
+          this.currentFooterMessage = '';
+          this.reply();
+        }
+      },
+      reply() {
+        setTimeout(() => {
+          this.contacts[this.indexChat].messages.push({
+            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+            message: 'ok',
+            status: 'received'
+          });
+        }, 1000);
+      },
     }
 });

@@ -89,10 +89,11 @@
           :class="message.status === 'sent' ? 'msg-sent' : 'msg-received'"
           >
             <div class="message-chat"
-            :class="message.status == 'sent' ? 'sent' : 'received'"
+            :class="message.status"
             >
               <p>{{ message.message }}</p>
               <span>{{ message.date }}</span>
+              <i class="fas fa-chevron-down"></i>
             </div>
           </div>
         </section>
@@ -102,13 +103,19 @@
           <a href="#">
             <i class="far fa-smile"></i>
           </a>
-          <input type="text" placeholder="Scrivi un messaggio">
+          <input type="text" placeholder="Scrivi un messaggio"
+          class="footer-message"
+          v-model="currentFooterMessage"
+          @keyup.enter="sendFooterMessage"
+          >
           <a href="#">
             <i class="fas fa-microphone"></i>
           </a>
         </section>
       </main>
     </div>
+    <!-- Day.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.6/dayjs.min.js" integrity="sha512-C2m821NxMpJ4Df47O4P/17VPqt0yiK10UmGl59/e5ynRRYiCSBvy0KHJjhp2XIjUJreuR+y3SIhVyiVilhCmcQ==" crossorigin="anonymous"></script>
     <!-- Js -->
     <script src="./js/main.js"></script>
   </body>

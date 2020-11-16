@@ -143,6 +143,10 @@ img {
 }
 
 .chatlist .contacts li:hover {
+  background: #faf8f8;
+}
+
+.chatlist .contacts li.active{
   background: #eaeaea;
 }
 
@@ -207,6 +211,7 @@ img {
   width: 300px;
   border-radius: 10px;
   padding: 10px 15px;
+  position: relative;
 }
 
 .cont-main .msg-sent .sent {
@@ -225,6 +230,20 @@ img {
   display: block;
   text-align: right;
   margin-top: 5px;
+}
+
+.cont-main .message-chat i {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  color: #70797c;
+  font-size: 12px;
+  display: none;
+}
+
+.cont-main .message-chat:hover i {
+  display: initial;
+  cursor: pointer;
 }
 
 /* FOOTER CHAT */
@@ -248,7 +267,10 @@ img {
   line-height: 3;
   padding: 0 10px;
   margin: 0 30px;
-  outline: none;
+}
+
+.cont-footer input:focus {
+  outline: auto #70797c;
 }
 
 .cont-footer input::placeholder {

@@ -9,14 +9,13 @@ var app = new Vue({
             name: 'Nome Utente',
             avatar: '_io'
         },
-          indexChat: 0,
-          currentFooterMessage: '',
         // Elenco contatti
         contacts: [
             {
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
+                lastLogin: '10/01/2020 16:15',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -39,6 +38,7 @@ var app = new Vue({
                 name: 'Fabio',
                 avatar: '_2',
                 visible: true,
+                lastLogin: '20/03/2020 16:35',
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -61,6 +61,7 @@ var app = new Vue({
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
+                lastLogin: '28/03/2020 16:15',
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -83,6 +84,7 @@ var app = new Vue({
                 name: 'Luisa',
                 avatar: '_4',
                 visible: true,
+                lastLogin: '10/01/2020 15:50',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -97,6 +99,9 @@ var app = new Vue({
                 ],
             },
         ],
+      indexChat: 0,
+      currentFooterMessage: '',
+      searchContent: '',
     },
     methods: {
       activeChat(index) {
@@ -104,23 +109,25 @@ var app = new Vue({
       },
       sendFooterMessage() {
         if(this.currentFooterMessage.trim() !== '') {
-          this.contacts[this.indexChat].messages.push({
-            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-            message: this.currentFooterMessage,
-            status: 'sent'
-          }),
+          const activeContact = this.contacts[this.indexChat];
+          this.printMessage(this.currentFooterMessage, 'sent', activeContact);
           this.currentFooterMessage = '';
-          this.reply();
+          setTimeout(() => {
+            this.printMessage('ok', 'received', activeContact);
+          }, 1000);
         }
       },
-      reply() {
-        setTimeout(() => {
-          this.contacts[this.indexChat].messages.push({
-            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-            message: 'ok',
-            status: 'received'
-          });
-        }, 1000);
+      printMessage(message, status, activeContact) {
+        activeContact.messages.push({
+          date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+          message,
+          status
+        });
       },
-    }
+      searchContact() {
+        this.contacts.forEach((contact) => {
+          contact.visible = contact.name.toLowerCase().includes(this.searchContent.trim().toLowerCase());
+        });
+      }
+  }
 });

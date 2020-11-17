@@ -120,7 +120,11 @@ img {
   border: none;
   flex-grow: 1;
   padding-left: 15px;
-  outline: none;
+  line-height: 2;
+}
+
+.search-content input:focus {
+  outline: auto #70797c;
 }
 
 .search-content input::placeholder {
